@@ -5,6 +5,9 @@
 **/*.js
 **/*.js.map
 
+# JavaScript files that should not be ignored
+!jest.config.js
+
 # TypeScript v1 declaration files
 typings/
 
