@@ -8,7 +8,7 @@ jest.mock('axios');
 const DEEP_MOCK = true;
 const mockedAxios = mocked(axios, DEEP_MOCK);
 
-describe('getPost', () => {
+describe('deletePost', () => {
   afterAll(()=> {
     jest.clearAllMocks();
     mockedAxios.mockClear();
