@@ -1,16 +1,16 @@
 import * as functions from 'firebase-functions';
 import axios from 'axios';
 
-const url = 'https://jsonplaceholder.typicode.com/posts';
+export const url = 'https://jsonplaceholder.typicode.com/posts';
 
 export const getPosts = functions.https.onRequest(async (req, res) => {
   try {
     const {data: posts} = await axios.get(url);
 
     res.send(posts);
-  } catch ({response}) {
-    functions.logger.error(response.statusText, {structuredData: true});
-    res.status(response.status).send(response.statusText);
+  } catch (error) {
+    functions.logger.error(error, {structuredData: true});
+    res.status(500).send(error.message);
   }
 });
 
