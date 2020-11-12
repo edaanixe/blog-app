@@ -8,7 +8,9 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "test": "jest",
-    "test:e2e": "newman run ./tests/e2e/blog-app.postman_collection.json"
+    "build:e2e-setup": "tsc ./tests/e2e/collectionSetup.ts",
+    "build:e2e-collection": "node ./tests/e2e/collectionSetup.js",
+    "test:e2e": "npm run build:e2e-setup && npm run build:e2e-collection && newman run ./tests/e2e/blog-app.postman_collection.json"
   },
   "engines": {
     "node": "10"
@@ -29,6 +31,7 @@
     "firebase-functions-test": "^0.2.0",
     "newman": "^5.2.1",
     "node-mocks-http": "^1.9.0",
+    "postman-collection": "^3.6.8",
     "ts-jest": "^26.4.3",
     "typescript": "^3.8.0"
   },

@@ -1,135 +1,86 @@
 {
-	"info": {
-		"_postman_id": "e8f2928d-9158-456d-bd66-33ba57e1b397",
-		"name": "blog-app",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "getPosts",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "ce4b91ca-10b2-485c-9e18-b682a8223e9f",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/getPosts",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"getPosts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "createPost",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"userId\": 1,\n    \"title\": \"Test\",\n    \"body\": \"Test\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/createPost",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"createPost"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "updatePost",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"userId\": 1,\n    \"title\": \"Test\",\n    \"body\": \"Test\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/updatePost/1",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"updatePost",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getPost",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/getPost/7",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"getPost",
-						"7"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "deletePost",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseUrl}}/deletePost/7",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"deletePost",
-						"7"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"variable": [
-		{
-			"id": "fffd4c71-0bfb-4c9d-8a1f-a466150067a5",
-			"key": "baseUrl",
-			"value": "http://localhost:5001/blog-app-6f01e/us-central1"
-		}
-	],
-	"protocolProfileBehavior": {}
+  "item": [
+    {
+      "id": "da24cdff-cd84-411a-966d-58d8267cc173",
+      "name": "getPosts",
+      "request": {
+        "url": {
+          "path": [
+            "getPosts"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "method": "GET"
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "6d429137-89fa-4e04-992b-5544c39fd758",
+            "type": "text/javascript",
+            "exec": [
+              "",
+              "          pm.test(\"Status code is 200\", () => {",
+              "            pm.expect(pm.response.code).to.eql(200);",
+              "          });          ",
+              "        "
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "349d1a60-2cd4-4f15-92f5-2603670ec4a7",
+            "type": "text/javascript",
+            "exec": [
+              "",
+              "          pm.test(\"Schema is valid\", () => {   ",
+              "            const schema = pm.collectionVariables.get(\"postSchema\");",
+              "            pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;",
+              "          });          ",
+              "        "
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "3a331d7f-7957-4aaf-b66d-43e56ad4ad1a",
+            "type": "text/javascript",
+            "exec": [
+              "",
+              "        pm.test(\"Response is valid\", () => {",
+              "          const ONE = 1",
+              "          pm.expect(pm.response.json()).to.have.length.gt(ONE)",
+              "        })      ",
+              "        "
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:5001/blog-app-6f01e/us-central1",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"integer\"},\"id\":{\"type\":\"integer\"},\"title\":{\"type\":\"string\"},\"body\":{\"type\":\"string\"}},\"required\":[\"userId\",\"id\",\"title\",\"body\"]}",
+      "key": "postSchema"
+    }
+  ],
+  "info": {
+    "_postman_id": "85140746-e2b2-45ff-ad23-04ad3142dc43",
+    "name": "blog-app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  }
 }
